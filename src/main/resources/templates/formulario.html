@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Handling Form Submission</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/agregar}" th:object="${formulario}" method="post">
+  <p>Rut: <input type="text" placeholder='12.345.678-9' th:field="*{rut}" /></p>
+  <p>Nombres: <input type="text" placeholder='Juan Ignacio' th:field="*{nombres}" /></p>
+  <p>Apellidos: <input type="text" placeholder='Perez Domingo' th:field="*{apellidos}" /></p>
+  <p>Fecha de Nacimiento: <input type="text" placeholder='1998-01-01' th:field="*{fechaDeNacimiento}" /></p>
+  <p>Sueldo fijo: <input type="text" placeholder='500000.0' th:field="*{sueldoFijo}" /></p>
+  <p>Sueldo liquido: <input type="text" placeholder='500000.0' th:field="*{sueldoLiquido}" /></p>
+  <p>Categoria: <input type="text" placeholder='A' th:field="*{categoria}" /></p>
+  <p>Descuento: <input type="text" placeholder='1000.0' th:field="*{descuento}" /></p>
+  <p>Horas Extras: <input type="text" placeholder='3' th:field="*{horasExtras}" /></p>
+    <p>Fecha de Ingreso: <input type="text" placeholder='2019-01-01' th:field="*{fechaDeIngreso}" /></p>
+  <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>
