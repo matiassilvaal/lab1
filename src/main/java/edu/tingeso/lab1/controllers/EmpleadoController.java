@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
-
     @GetMapping("/formulario")
     public String formulario(Model model){
         model.addAttribute("formulario",new EmpleadoEntity());
@@ -32,6 +31,7 @@ public class EmpleadoController {
 
     @PostMapping(value = "/agregar", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String crearEmpleado(EmpleadoEntity empleado) {
+
         empleadoService.guardarEmpleado(empleado);
         return "redirect:/listar";
     }

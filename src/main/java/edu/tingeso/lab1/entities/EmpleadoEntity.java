@@ -29,4 +29,5 @@ public class EmpleadoEntity {
     private Double descuento;
     private Integer horasExtras;
     private Date fechaDeIngreso;
+
 }
