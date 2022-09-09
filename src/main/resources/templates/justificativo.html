@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Web App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/glass.css}" rel="stylesheet" />
 </head>
 <body>
+<div class="glass-panel">
+    <p>Ingresar un justificativo.</p>
+    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+    <form method="put" th:action="@{/loadjustificativo}">
+        <p>Fecha:</p>
+        <input type="text" name="fecha" placeholder='2022-09-09'/>
+        <p></p>
+        <p>Rut:</p>
+        <input type="text" name="rut" placeholder='12.345.678-K'/></p>
+        <button type="submit" class="glass-button">Ingresar justificativo</button>
+        <a class="glass-button" href="/index" role="button">Volver</a>
+    </form>
 
+</div>
 </body>
 </html>

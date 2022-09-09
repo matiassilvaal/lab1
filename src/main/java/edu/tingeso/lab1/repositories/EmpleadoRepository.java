@@ -20,7 +20,6 @@ public interface EmpleadoRepository extends JpaRepository<EmpleadoEntity, Long> 
             nativeQuery = true)
     void updateAnios();
 
-
     /*@Query("select e from EmpleadoEntity e where e.nombre = :nombre")
     EmpleadoEntity findByNameCustomQuery(@Param("nombre") String nombre);
 

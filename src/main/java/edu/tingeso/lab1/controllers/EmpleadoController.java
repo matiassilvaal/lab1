@@ -1,7 +1,6 @@
 package edu.tingeso.lab1.controllers;
 
 import edu.tingeso.lab1.entities.EmpleadoEntity;
-import edu.tingeso.lab1.services.DataService;
 import edu.tingeso.lab1.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 @Controller
@@ -46,12 +44,12 @@ public class EmpleadoController {
         return "redirect:/listar";
     }
 
-    @RequestMapping(value="/mplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
+    /*@RequestMapping(value="/mplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
     public String index(Model model) {
         ArrayList<EmpleadoEntity>empleados=empleadoService.obtenerEmpleados();
         model.addAttribute("empleados",empleados);
         return "mplanilla";
-    }
+    }*/
     /*@RequestMapping(value="/prueba", method = {RequestMethod.GET, RequestMethod.PUT})
     public String prueba() {
         empleadoService.updateAniosEnEmpresa();

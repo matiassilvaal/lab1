@@ -14,21 +14,34 @@
             <thead style="color: rgba(255,255,255,0.6)">
                 <tr >
                     <th>Rut</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Fecha de Nacimiento</th>
+                    <th>Apellidos y Nombres</th>
                     <th>Categoria</th>
-                    <th>Fecha de Ingreso</th>
+                    <th>Años en la empresa</th>
+                    <th>Sueldo Fijo</th>
+                    <th>Bonificaciones</th>
+                    <th>Horas Extras</th>
+                    <th>Descuentos</th>
+                    <th>Sueldo Bruto</th>
+                    <th>Cotización Previsional</th>
+                    <th>Cotización Salud</th>
+                    <th>Sueldo final</th>
                 </tr>
             </thead>
             <tbody style="color: rgba(255,255,255,0.6)">
-                <tr th:each="empleado:${empleados}">
-                    <td th:text="${empleado.rut}"></td>
-                    <td th:text="${empleado.nombres}"></td>
-                    <td th:text="${empleado.apellidos}"></td>
-                    <td th:text="${empleado.fechaDeNacimiento}"></td>
-                    <td th:text="${empleado.categoria}"></td>
-                    <td th:text="${empleado.fechaDeIngreso}"></td>
+                <tr th:each="pla:${planilla}">
+                    <td th:text="${pla.rut}"></td>
+                    <td th:text="${pla.apellidosNombres}"></td>
+                    <td th:text="${pla.categoria}"></td>
+                    <td th:text="${pla.aniosEnEmpresa}"></td>
+                    <td th:text="${pla.sueldoFijo}"></td>
+                    <td th:text="${pla.bonificacionServicios}"></td>
+                    <td th:text="${pla.horasExtras}"></td>
+                    <td th:text="${pla.Descuentos}"></td>
+                    <td th:text="${pla.sueldoBruto}"></td>
+                    <td th:text="${pla.cotizacionPrevisional}"></td>
+                    <td th:text="${pla.cotizacionSalud}"></td>
+                    <td th:text="${pla.sueldoFinal}"></td>
+
                 </tr>
             </tbody>
         </div>

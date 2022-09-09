@@ -26,11 +26,13 @@ public class DataEntity {
         private Date fecha;
         private Time hora;
         private String rut;
+        private Boolean justificado;
 
         public DataEntity(String fecha, String hora, String rut) throws ParseException {
                 this.fecha = Date.valueOf(convertirFecha(fecha));
                 this.hora = Time.valueOf(convertirHora(hora));
                 this.rut = rut;
+                this.justificado = false;
         }
 
         private String convertirFecha(String fecha) throws ParseException {
