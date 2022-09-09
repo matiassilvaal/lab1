@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Web App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/glass.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="glass-panel">
+    <p>Importar archivo data.</p>
+    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+    <form method="post" th:action="@{/load}" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="file" class="form-control-file">
+        </div>
+        <button type="submit" class="glass-button">Importar data</button>
+        <a class="glass-button" href="/index" role="button">Volver</a>
+    </form>
+    <table class="table">
+        <div class="glass-toolbar">
+            <thead style="color: rgba(255,255,255,0.6)">
+            <tr >
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Rut</th>
+            </tr>
+            </thead>
+            <tbody style="color: rgba(255,255,255,0.6)">
+            <tr th:each="info:${data}">
+                <td th:text="${info.fecha}"></td>
+                <td th:text="${info.hora}"></td>
+                <td th:text="${info.rut}"></td>
+            </tr>
+            </tbody>
+        </div>
+    </table>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 package edu.tingeso.lab1.controllers;
 
 import edu.tingeso.lab1.entities.EmpleadoEntity;
-import edu.tingeso.lab1.repositories.EmpleadoRepository;
+import edu.tingeso.lab1.services.DataService;
 import edu.tingeso.lab1.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +17,10 @@ import java.util.ArrayList;
 public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
     @GetMapping("/formulario")
     public String formulario(Model model){
         model.addAttribute("formulario",new EmpleadoEntity());
@@ -31,7 +35,6 @@ public class EmpleadoController {
 
     @PostMapping(value = "/agregar", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String crearEmpleado(EmpleadoEntity empleado) {
-
         empleadoService.guardarEmpleado(empleado);
         return "redirect:/listar";
     }
@@ -42,4 +45,17 @@ public class EmpleadoController {
         empleadoService.eliminarEmpleado(id);
         return "redirect:/listar";
     }
+
+    @RequestMapping(value="/mplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
+    public String index(Model model) {
+        ArrayList<EmpleadoEntity>empleados=empleadoService.obtenerEmpleados();
+        model.addAttribute("empleados",empleados);
+        return "mplanilla";
+    }
+    /*@RequestMapping(value="/prueba", method = {RequestMethod.GET, RequestMethod.PUT})
+    public String prueba() {
+        empleadoService.updateAniosEnEmpresa();
+        return "redirect:/mplanilla";
+    }*/
+
 }

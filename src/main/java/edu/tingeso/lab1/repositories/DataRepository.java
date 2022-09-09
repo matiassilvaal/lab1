@@ -10,5 +10,4 @@ import javax.xml.crypto.Data;
 
 @Repository
 public interface DataRepository extends JpaRepository<DataEntity, Long> {
-    public DataEntity findByRut(String rut);
 }

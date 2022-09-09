@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.ArrayList;
 import java.util.Optional;
@@ -16,22 +17,28 @@ import java.util.Optional;
 public class DataService {
     @Autowired
     DataRepository dataRepository;
-    public void loadDataFromFile(String file){
+
+    public void loadDataFromFile(String file) {
         try {
+            dataRepository.deleteAll();
             File myObj = new File(file);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String rut = data.split(",")[2];
-
+                String[] dataSplit = data.split(";");
+                DataEntity dataEntity = new DataEntity(dataSplit[0],dataSplit[1],dataSplit[2]);
+                dataRepository.save(dataEntity);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
-    public ArrayList<DataEntity> obtenerData(){
+
+    public ArrayList<DataEntity> obtenerData() {
         return (ArrayList<DataEntity>) dataRepository.findAll();
     }
+
 }

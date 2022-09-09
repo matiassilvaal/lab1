@@ -3,14 +3,17 @@ package edu.tingeso.lab1.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 import javax.persistence.*;
-import java.io.File;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "data")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,16 +27,24 @@ public class DataEntity {
         private Time hora;
         private String rut;
 
-        public DataEntity(File data){
-            String[] dataString = data.toString().split(";");
-            Integer year = Integer.parseInt(dataString[0].split("/")[0]);
-            Integer month = Integer.parseInt(dataString[0].split("/")[1]);
-            Integer day = Integer.parseInt(dataString[0].split("/")[2]);
-            Integer hour = Integer.parseInt(dataString[1].split(":")[0]);
-            Integer minute = Integer.parseInt(dataString[1].split(":")[1]);
-            this.fecha = new Date(year, month, day);
-            this.hora = new Time(hour, minute, 0);
-            this.rut = dataString[1];
+        public DataEntity(String fecha, String hora, String rut) throws ParseException {
+                this.fecha = Date.valueOf(convertirFecha(fecha));
+                this.hora = Time.valueOf(convertirHora(hora));
+                this.rut = rut;
+        }
+
+        private String convertirFecha(String fecha) throws ParseException {
+                String anio = fecha.split("/")[0];
+                String mes = fecha.split("/")[1];
+                String dia = fecha.split("/")[2];
+                String newFecha = anio + "-" + mes + "-" + dia;
+                return newFecha;
+        }
+        private String convertirHora(String hora) throws ParseException {
+                String hr = hora.split(":")[0];
+                String minuto = hora.split(":")[1];
+                String newHora = hr + ":" + minuto + ":00";
+                return newHora;
         }
 
 }

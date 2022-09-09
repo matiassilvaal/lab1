@@ -5,6 +5,7 @@ import edu.tingeso.lab1.repositories.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class EmpleadoService {
     }
 
     public EmpleadoEntity guardarEmpleado(EmpleadoEntity empleado){
+
         return empleadoRepository.save(empleado);
     }
 
@@ -32,6 +34,15 @@ public class EmpleadoService {
     public boolean eliminarEmpleado(Long id) {
         try{
             empleadoRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            return false;
+        }
+    }
+
+    public boolean updateAniosEnEmpresa(){
+        try{
+            empleadoRepository.updateAnios();
             return true;
         }catch(Exception err){
             return false;
