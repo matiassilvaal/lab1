@@ -8,16 +8,23 @@
 </head>
 <body>
 <div class="glass-panel">
+    <h1><a href="http://localhost:8090">Recursos Humanos MueblesStgo</a></h1>
     <p>Autorizar horas extras.</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-    <form method="put" th:action="@{/loadhorasextras}">
+    <form method="get" th:action="@{/loadhorasextras}">
+        <div>
         <p>Fecha:</p>
-        <input type="text" name="fecha" placeholder='2022-09-09'/>
-        <p></p>
+        <label>
+            <input type="text" name="fecha" placeholder='2022-09-09'/>
+        </label>
         <p>Rut:</p>
-        <input type="text" name="rut" placeholder='12.345.678-K'/></p>
+        <label>
+            <input type="text" name="rut" placeholder='12.345.678-K'/>
+        </label>
+        </div>
         <button type="submit" class="glass-button">Autorizar</button>
         <a class="glass-button" href="/index" role="button">Volver</a>
+
     </form>
 
 </div>

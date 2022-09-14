@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class EmpleadoService {
@@ -17,36 +16,25 @@ public class EmpleadoService {
         return (ArrayList<EmpleadoEntity>) empleadoRepository.findAll();
     }
 
-    public EmpleadoEntity guardarEmpleado(EmpleadoEntity empleado){
-
-        return empleadoRepository.save(empleado);
+    public void guardarEmpleado(EmpleadoEntity empleado){
+        empleadoRepository.save(empleado);
     }
 
-    public Optional<EmpleadoEntity> obtenerPorId(Long id){
+    /*public Optional<EmpleadoEntity> obtenerPorId(Long id){
         return empleadoRepository.findById(id);
     }
 
     public EmpleadoEntity obtenerPorRut(String rut){
         return empleadoRepository.findByRut(rut);
     }
-
-    public boolean eliminarEmpleado(Long id) {
-        try{
-            empleadoRepository.deleteById(id);
-            return true;
-        }catch(Exception err){
-            return false;
-        }
+*/
+    public void eliminarEmpleado(Long id) {
+        empleadoRepository.deleteById(id);
     }
 
-    public boolean updateAniosEnEmpresa(){
-        try{
-            empleadoRepository.updateAnios();
-            return true;
-        }catch(Exception err){
-            return false;
-        }
-    }
+    /*public void updateAniosEnEmpresa(){
+        empleadoRepository.updateAnios();
+    }*/
 
 
 }

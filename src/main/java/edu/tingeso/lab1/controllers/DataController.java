@@ -1,7 +1,6 @@
 package edu.tingeso.lab1.controllers;
 
 import edu.tingeso.lab1.entities.DataEntity;
-import edu.tingeso.lab1.repositories.DataRepository;
 import edu.tingeso.lab1.services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,16 +18,10 @@ public class DataController {
     DataService dataService;
     @PostMapping(value = "/load")
     public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-        switch(dataService.loadDataFromFile(file)){
-            case -1:
-                attributes.addFlashAttribute("message", "Porfavor, selecciona un archivo para cargar.");
-                break;
-            case 0:
-                attributes.addFlashAttribute("message", "No se ha podido cargar lo entregado");
-                break;
-            case 1:
-                attributes.addFlashAttribute("message", "Se ha cargado el archivo!");
-                break;
+        switch (dataService.loadDataFromFile(file)) {
+            case -1 -> attributes.addFlashAttribute("message", "Porfavor, selecciona un archivo para cargar.");
+            case 0 -> attributes.addFlashAttribute("message", "No se ha podido cargar lo entregado");
+            case 1 -> attributes.addFlashAttribute("message", "Se ha cargado el archivo!");
         }
         return "redirect:/importar";
     }

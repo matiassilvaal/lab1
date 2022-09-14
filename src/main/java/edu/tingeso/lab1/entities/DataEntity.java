@@ -3,15 +3,13 @@ package edu.tingeso.lab1.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Getter;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
+@SuppressWarnings("com.haulmont.jpb.LombokDataInspection")
 @Entity
 @Table(name = "data")
 @Data
@@ -27,26 +25,26 @@ public class DataEntity {
         private Time hora;
         private String rut;
         private Boolean justificado;
+        private Integer horasExtras;
 
         public DataEntity(String fecha, String hora, String rut) throws ParseException {
                 this.fecha = Date.valueOf(convertirFecha(fecha));
                 this.hora = Time.valueOf(convertirHora(hora));
                 this.rut = rut;
                 this.justificado = false;
+                this.horasExtras = 0;
         }
 
-        private String convertirFecha(String fecha) throws ParseException {
+        private String convertirFecha(String fecha) {
                 String anio = fecha.split("/")[0];
                 String mes = fecha.split("/")[1];
                 String dia = fecha.split("/")[2];
-                String newFecha = anio + "-" + mes + "-" + dia;
-                return newFecha;
+                return anio + "-" + mes + "-" + dia;
         }
-        private String convertirHora(String hora) throws ParseException {
+        private String convertirHora(String hora) {
                 String hr = hora.split(":")[0];
                 String minuto = hora.split(":")[1];
-                String newHora = hr + ":" + minuto + ":00";
-                return newHora;
+                return hr + ":" + minuto + ":00";
         }
 
 }

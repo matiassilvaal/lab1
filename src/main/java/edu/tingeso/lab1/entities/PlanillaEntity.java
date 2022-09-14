@@ -3,10 +3,10 @@ package edu.tingeso.lab1.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 
+@SuppressWarnings("com.haulmont.jpb.LombokDataInspection")
 @Entity
-@Table(name = "empleados")
+@Table(name = "planillas")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

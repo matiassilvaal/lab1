@@ -28,6 +28,9 @@ public class DataService {
         if (file.isEmpty()) {
             return -1;
         }
+        if (file.getOriginalFilename() == null) {
+            return -1;
+        }
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
@@ -41,22 +44,30 @@ public class DataService {
         return 1;
     }
 
+    public void deleteData() {
+        dataRepository.deleteAll();
+    }
     public void readDataFromFile(String file){
+        deleteData();
+        dataRepository.saveAll(readIntoList(file));
+    }
+    public ArrayList<DataEntity> readIntoList(String file){
         try {
-            dataRepository.deleteAll();
+            //dataRepository.deleteAll();
+            ArrayList<DataEntity> dataList = new ArrayList<>();
             File myObj = new File(file);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] dataSplit = data.split(";");
                 DataEntity dataEntity = new DataEntity(dataSplit[0],dataSplit[1],dataSplit[2]);
-                dataRepository.save(dataEntity);
+                dataList.add(dataEntity);
+                //dataRepository.save(dataEntity);
             }
             myReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+            return dataList;
+        } catch (FileNotFoundException | ParseException e) {
+            return null;
         }
     }
 

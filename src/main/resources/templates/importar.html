@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="glass-panel">
+    <h1><a href="http://localhost:8090">Recursos Humanos MueblesStgo</a></h1>
     <p>Importar archivo data.</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
     <form method="post" th:action="@{/load}" enctype="multipart/form-data">
@@ -17,8 +18,9 @@
         <button type="submit" class="glass-button">Importar data</button>
         <a class="glass-button" href="/index" role="button">Volver</a>
     </form>
+    <div class="glass-toolbar">
     <table class="table">
-        <div class="glass-toolbar">
+
             <thead style="color: rgba(255,255,255,0.6)">
             <tr >
                 <th>Fecha</th>
@@ -33,8 +35,8 @@
                 <td th:text="${info.rut}"></td>
             </tr>
             </tbody>
-        </div>
     </table>
+    </div>
 </div>
 </body>
 </html>
