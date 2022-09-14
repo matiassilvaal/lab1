@@ -4,15 +4,13 @@ import edu.tingeso.lab1.entities.EmpleadoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
 
 @Repository
 public interface EmpleadoRepository extends JpaRepository<EmpleadoEntity, Long> {
-    public EmpleadoEntity findByRut(String rut);
+    EmpleadoEntity findByRut(String rut);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional

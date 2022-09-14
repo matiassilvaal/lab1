@@ -19,11 +19,6 @@ public class EmpleadoController {
     public String index() {
         return "index";
     }
-    @GetMapping("/formulario")
-    public String formulario(Model model){
-        model.addAttribute("formulario",new EmpleadoEntity());
-        return "formulario";
-    }
     @GetMapping("/listar")
     public String listar(Model model) {
         ArrayList<EmpleadoEntity>empleados=empleadoService.obtenerEmpleados();
@@ -43,17 +38,5 @@ public class EmpleadoController {
         empleadoService.eliminarEmpleado(id);
         return "redirect:/listar";
     }
-
-    /*@RequestMapping(value="/mplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
-    public String index(Model model) {
-        ArrayList<EmpleadoEntity>empleados=empleadoService.obtenerEmpleados();
-        model.addAttribute("empleados",empleados);
-        return "mplanilla";
-    }*/
-    /*@RequestMapping(value="/prueba", method = {RequestMethod.GET, RequestMethod.PUT})
-    public String prueba() {
-        empleadoService.updateAniosEnEmpresa();
-        return "redirect:/mplanilla";
-    }*/
 
 }
