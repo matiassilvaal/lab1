@@ -22,12 +22,12 @@ public class PlanillaEntity {
         private String apellidosNombres;
         private String categoria;
         private Integer aniosEnEmpresa;
-        private Double sueldoFijo;
+        private Integer sueldoFijo;
         private Integer bonificacionServicios;
         private Integer horasExtras;
-        private Integer descuentos;
+        private Double descuentos;
         private Double sueldoBruto;
-        private Double contizacionPrevisional;
+        private Double cotizacionPrevisional;
         private Double cotizacionSalud;
         private Double sueldoFinal;
 }

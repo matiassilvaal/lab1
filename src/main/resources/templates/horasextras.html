@@ -7,26 +7,31 @@
     <link th:href="@{/css/glass.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="glass-panel">
-    <h1><a href="http://localhost:8090">Recursos Humanos MueblesStgo</a></h1>
-    <p>Autorizar horas extras.</p>
-    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-    <form method="get" th:action="@{/loadhorasextras}">
-        <div>
-        <p>Fecha:</p>
-        <label>
-            <input type="text" name="fecha" placeholder='2022-09-09'/>
-        </label>
-        <p>Rut:</p>
-        <label>
-            <input type="text" name="rut" placeholder='12.345.678-K'/>
-        </label>
+<form method="get" th:action="@{/loadhorasextras}">
+    <div class="glass-panel">
+        <h1><a href="http://localhost:8090">Recursos Humanos MueblesStgo</a></h1>
+        <p>Autorizar horas extras.</p>
+        <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+        <div class="glass-p2">
+            <div>
+                <p>Fecha:</p>
+                <label>
+                    <input type="text" name="fecha" placeholder='2022-09-09'/>
+                </label>
+                <p>Rut:</p>
+                <label>
+                    <input type="text" name="rut" placeholder='12.345.678-K'/>
+                </label>
+            </div>
+            <div>
+                <button type="submit" class="glass-button">Autorizar horas extras</button>
+            </div>
+            <div>
+                <a class="glass-button" href="/index" role="button">Volver</a>
+            </div>
         </div>
-        <button type="submit" class="glass-button">Autorizar</button>
-        <a class="glass-button" href="/index" role="button">Volver</a>
+    </div>
+</form>
 
-    </form>
-
-</div>
 </body>
 </html>

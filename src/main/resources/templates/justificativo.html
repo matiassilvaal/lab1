@@ -12,6 +12,7 @@
     <p>Ingresar un justificativo.</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
     <form method="get" th:action="@{/loadjustificativo}">
+        <div class="glass-p2">
         <div>
         <p>Fecha:</p>
         <label>
@@ -22,9 +23,13 @@
             <input type="text" name="rut" placeholder='12.345.678-K'/>
         </label>
         </div>
-        <button type="submit" class="glass-button">Ingresar justificativo</button>
-        <a class="glass-button" href="/index" role="button">Volver</a>
-
+        <div>
+            <button type="submit" class="glass-button">Ingresar justificativo</button>
+        </div>
+        <div>
+            <a class="glass-button" href="/index" role="button">Volver</a>
+        </div>
+        </div>
     </form>
 
 </div>

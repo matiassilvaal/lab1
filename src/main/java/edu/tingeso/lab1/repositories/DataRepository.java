@@ -12,22 +12,28 @@ import java.sql.Date;
 
 @Repository
 public interface DataRepository extends JpaRepository<DataEntity, Long> {
-    @Query(value = "select * from data as d where d.fecha = :fecha and d.rut = :rut",
-            nativeQuery = true)
-    DataEntity findByRutAndFecha(@Param("fecha") Date fecha, @Param("rut") String rut);
 
-    /*@Query(value = "select COUNT(*) from da ta as d where d.fecha = :fecha and d.rut = :rut",
+    @Query(value = "SELECT DISTINCT(d.fecha) from data as d", nativeQuery = true)
+    Date[] findDistinctFecha();
+    @Query(value = "select * from data as d where d.fecha = :fecha and d.rut = :rut ORDER BY d.id LIMIT 1",
             nativeQuery = true)
-    DataEntity countNotJustificado(@Param("fecha") Date fecha, @Param("rut") String rut);*/
+    DataEntity findEntrada(@Param("fecha") Date fecha, @Param("rut") String rut);
+
+    @Query(value = "select * from data as d where d.fecha = :fecha and d.rut = :rut ORDER BY d.id DESC LIMIT 1",
+            nativeQuery = true)
+    DataEntity findSalida(@Param("fecha") Date fecha, @Param("rut") String rut);
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
-    @Query(value =  "UPDATE data d SET d.justificado = 1 WHERE d.rut = :rut",
+    @Query(value =  "UPDATE data d SET d.justificado = 1 WHERE d.rut = :rut and d.fecha = :fecha",
             nativeQuery = true)
-    void updateJustificativo(String rut);
+    void updateJustificativo(@Param("rut") String rut, @Param("fecha") Date fecha);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
-    @Query(value =  "UPDATE data d SET d.horas_extras = :horasExtras WHERE d.rut = :rut",
+    @Query(value =  "UPDATE data d SET d.horas_extras = :horasExtras WHERE d.rut = :rut AND d.fecha = :fecha AND d.horas_extras > '18:00'",
             nativeQuery = true)
-    void updateHorasExtras(String rut, Integer horasExtras);
+    void updateHorasExtras(@Param("rut") String rut, @Param("fecha") Date fecha, @Param("horasExtras") Integer horasExtras);
+
+    @Query(value = "SELECT sum(horas_extras) FROM data WHERE rut=:rut", nativeQuery = true)
+    Integer sumHorasExtras(@Param("rut") String rut);
 }

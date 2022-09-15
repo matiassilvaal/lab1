@@ -7,17 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.text.ParseException;
-import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.Scanner;
 import java.util.ArrayList;
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class DataService {
     @Autowired
@@ -71,6 +73,24 @@ public class DataService {
         }
     }
 
+    public DataEntity encontrarEntrada(String rut, Date fecha){
+        return dataRepository.findEntrada(fecha,rut);
+    }
+    public DataEntity encontrarSalida(String rut, Date fecha){
+        return dataRepository.findSalida(fecha,rut);
+    }
+    public void ingresarJustificativo(String rut, Date fecha){
+        dataRepository.updateJustificativo(rut, fecha);
+    }
+    public void ingresarHorasExtras(String rut, Date fecha, Integer horas){
+        dataRepository.updateHorasExtras(rut,fecha, horas);
+    }
+    public Integer obtenerSumaHorasExtras(String rut){
+        return dataRepository.sumHorasExtras(rut);
+    }
+    public Date[] obtenerFechasUnicas(){
+        return dataRepository.findDistinctFecha();
+    }
     public ArrayList<DataEntity> obtenerData() {
         return (ArrayList<DataEntity>) dataRepository.findAll();
     }

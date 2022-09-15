@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class EmpleadoService {
     @Autowired
@@ -20,21 +21,10 @@ public class EmpleadoService {
         empleadoRepository.save(empleado);
     }
 
-    /*public Optional<EmpleadoEntity> obtenerPorId(Long id){
-        return empleadoRepository.findById(id);
-    }
-
-    public EmpleadoEntity obtenerPorRut(String rut){
-        return empleadoRepository.findByRut(rut);
-    }
-*/
     public void eliminarEmpleado(Long id) {
         empleadoRepository.deleteById(id);
     }
 
-    /*public void updateAniosEnEmpresa(){
-        empleadoRepository.updateAnios();
-    }*/
 
 
 }

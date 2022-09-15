@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.sql.Date;
 import java.util.ArrayList;
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Controller
 @RequestMapping
 public class PlanillaController {
@@ -19,6 +20,9 @@ public class PlanillaController {
     @GetMapping("/mplanilla")
     public String mostrarPlanilla(Model model){
         ArrayList<PlanillaEntity>planilla=planillaService.obtenerPlanilla();
+        if(planilla.size()==0){
+            model.addAttribute("message","No existen planillas calculadas.");
+        }
         model.addAttribute("planilla",planilla);
         return "mplanilla";
     }
@@ -36,6 +40,7 @@ public class PlanillaController {
                 case 0 ->
                         attributes.addFlashAttribute("message", "No se puede justificar un atraso menor de 70 minutos");
                 case -1 -> attributes.addFlashAttribute("message", "Este justificativo ya fue ingresado");
+                case -2 -> attributes.addFlashAttribute("message", "No se ha encontrado al empleado en la fecha ingresada");
             }
         }
         else{ attributes.addFlashAttribute("message", "Debe ingresar todos los datos"); }
@@ -64,7 +69,12 @@ public class PlanillaController {
         return "cplanilla";
     }
     @RequestMapping(value="/calcularplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
-    public String calculosDePlanilla(){
-        return "index";
+    public String calculosDePlanilla(RedirectAttributes attributes){
+        Integer res = planillaService.calcularPlanilla();
+        switch(res){
+            case 1 -> attributes.addFlashAttribute("message", "Se ha calculado la planilla");
+            case 0 -> attributes.addFlashAttribute("message", "Error inesperado, no se pudo calcular la planilla");
+        }
+        return "redirect:/cplanilla";
     }
 }

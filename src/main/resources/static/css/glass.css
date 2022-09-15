@@ -9,10 +9,20 @@
     backdrop-filter: blur(10px);
 }
 
+.glass-p2 {
+    color: #fff;
+    margin: 40px auto;
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: max-content;
+    border-radius: 15px;
+    padding: 10px;
+    backdrop-filter: blur(10px);
+}
+
 .glass-button {
     display: inline-block;
     padding: 24px 32px;
-    border: 0;
     text-decoration: none;
     border-radius: 15px;
     background-color: rgba(255,255,255,0.1);
@@ -45,9 +55,12 @@ body {
     max-width: 1300px;
 }
 
+.glass-p2 {
+    max-width: 500px;
+}
+
 .glass-button {
     margin: 15px;
-    margin-top: 40px;
 }
 
 h1, h1 a {
@@ -59,7 +72,7 @@ h1, h1 a {
     margin: 0 auto;
     text-decoration: none;
     color: #fff;
-    padding-top: 60px;
+    padding-top: 30px;
     color: rgba(255,255,255,0.8);
 }
 

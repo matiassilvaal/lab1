@@ -10,7 +10,14 @@
 <div class="glass-panel">
     <h1><a href="http://localhost:8090">Recursos Humanos MueblesStgo</a></h1>
     <p>Información de la planilla de sueldos.</p>
-    <div class="glass-toolbar">
+    <p th:text="${message}" th:if="${message ne null}" class="alert alert-danger"></p>
+    <div class="glass-p2" style="float:left">
+        <a class="glass-button" href="/cplanilla" role="button">Calcular planilla</a>
+    </div>
+    <div class="glass-p2" style="float:right; text-align: right;">
+        <a class="glass-button" href="/index" role="button">volver</a>
+    </div>
+    <div class="glass-toolbar" style="font-size: 11px;">
     <table class="table">
 
             <thead style="color: rgba(255,255,255,0.6)">
@@ -50,7 +57,7 @@
     </table>
     </div>
 
-    <a class="glass-button" href="/index" role="button">volver</a>
+
 </div>
 </body>
 </html>
