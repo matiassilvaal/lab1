@@ -1,6 +1,10 @@
 package edu.tingeso.lab1;
+import edu.tingeso.lab1.entities.DataEntity;
 import edu.tingeso.lab1.services.DataService;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,10 +16,12 @@ class DataTest {
     }
     @Test
     void nullReadIntoListTest() {
-        assertNull(dataService.readIntoList(""));
+        List<DataEntity> emptyList = Collections.emptyList();
+        assertEquals(emptyList, dataService.readIntoList(""));
     }
     @Test
     void notFoundReadIntoListTest() {
-        assertNull(dataService.readIntoList("Data1.txt"));
+        List<DataEntity> emptyList = Collections.emptyList();
+        assertEquals(emptyList, dataService.readIntoList("Data1.txt"));
     }
 }

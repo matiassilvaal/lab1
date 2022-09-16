@@ -12,9 +12,6 @@
     <p>Importar archivo data.</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
     <form method="post" th:action="@{/load}" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="file" name="file" class="form-control-file">
-        </div>
         <div class="glass-p2" style="float: left">
         <button type="submit" class="glass-button">Importar data</button>
         </div>

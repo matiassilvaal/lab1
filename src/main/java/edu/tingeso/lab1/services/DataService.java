@@ -4,16 +4,9 @@ import edu.tingeso.lab1.entities.DataEntity;
 import edu.tingeso.lab1.repositories.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -25,35 +18,19 @@ public class DataService {
     @Autowired
     DataRepository dataRepository;
 
-    public Integer loadDataFromFile(MultipartFile file) {
-        if (file.isEmpty()) {
-            return -1;
-        }
-        String f = file.getOriginalFilename();
-        if (f != null) {
-            String fileName = StringUtils.cleanPath(f);
-            try {
-                Path path = Paths.get(fileName);
-                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                readDataFromFile(fileName);
-
-            } catch (IOException e) {
-                return 0;
-            }
-        }
-        else{
-            return -1;
-        }
-        return 1;
-
-    }
 
     public void deleteData() {
         dataRepository.deleteAll();
     }
-    public void readDataFromFile(String file){
+    public Integer readDataFromFile(){
         deleteData();
-        dataRepository.saveAll(readIntoList(file));
+        List<DataEntity> res = readIntoList("Data.txt");
+        if(res != null) {
+            dataRepository.saveAll(res);
+            return 1;
+        }
+        else return -1;
+
     }
     public List<DataEntity> readIntoList(String file){
         try {
