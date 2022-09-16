@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
-import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -53,9 +53,8 @@ public class DataService {
         deleteData();
         dataRepository.saveAll(readIntoList(file));
     }
-    public ArrayList<DataEntity> readIntoList(String file){
+    public List<DataEntity> readIntoList(String file){
         try {
-            //dataRepository.deleteAll();
             ArrayList<DataEntity> dataList = new ArrayList<>();
             File myObj = new File(file);
             Scanner myReader = new Scanner(myObj);
@@ -64,12 +63,11 @@ public class DataService {
                 String[] dataSplit = data.split(";");
                 DataEntity dataEntity = new DataEntity(dataSplit[0],dataSplit[1],dataSplit[2]);
                 dataList.add(dataEntity);
-                //dataRepository.save(dataEntity);
             }
             myReader.close();
             return dataList;
-        } catch (FileNotFoundException | ParseException e) {
-            return null;
+        } catch (FileNotFoundException e) {
+            return List.of();
         }
     }
 
@@ -91,8 +89,8 @@ public class DataService {
     public Date[] obtenerFechasUnicas(){
         return dataRepository.findDistinctFecha();
     }
-    public ArrayList<DataEntity> obtenerData() {
-        return (ArrayList<DataEntity>) dataRepository.findAll();
+    public List<DataEntity> obtenerData() {
+        return dataRepository.findAll();
     }
 
 }

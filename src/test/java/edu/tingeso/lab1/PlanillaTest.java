@@ -13,37 +13,37 @@ public class PlanillaTest {
     PlanillaService planillaService = new PlanillaService();
     DataEntity dataEntity = new DataEntity();
     @Test
-    public void calcularSiJustificativoTest_Exists(){
+    void calcularSiJustificativoTest_Exists(){
         dataEntity.setJustificado(true);
-        assertEquals(planillaService.calcularSiJustificativo(dataEntity),-1);
+        assertEquals(-1, planillaService.calcularSiJustificativo(dataEntity));
     }
     @Test
-    public void calcularSiJustificativoTest_NotExists(){
+    void calcularSiJustificativoTest_NotExists(){
         dataEntity.setJustificado(false);
         dataEntity.setHora(Time.valueOf("09:00:00"));
-        assertEquals(planillaService.calcularSiJustificativo(dataEntity),0);
+        assertEquals(0, planillaService.calcularSiJustificativo(dataEntity));
     }
     @Test
-    public void calcularSiJustificativoTest_NotExistsAndGreaterThan70(){
+    void calcularSiJustificativoTest_NotExistsAndGreaterThan70(){
         dataEntity.setJustificado(false);
         dataEntity.setHora(Time.valueOf("09:30:00"));
-        assertEquals(planillaService.calcularSiJustificativo(dataEntity),1);
+        assertEquals(1, planillaService.calcularSiJustificativo(dataEntity));
     }
     @Test
-    public void calcularSiHorasExtrasTest_AlreadyExists(){
+    void calcularSiHorasExtrasTest_AlreadyExists(){
         dataEntity.setHorasExtras(4);
-        assertEquals(planillaService.calcularSiHorasExtras(dataEntity),-1);
+        assertEquals(-1, planillaService.calcularSiHorasExtras(dataEntity));
     }
     @Test
-    public void calcularSiHorasExtrasTest_Exists(){
+    void calcularSiHorasExtrasTest_Exists(){
         dataEntity.setHorasExtras(0);
         dataEntity.setHora(Time.valueOf("19:00:00"));
-        assertEquals(planillaService.calcularSiHorasExtras(dataEntity),1);
+        assertEquals(1, planillaService.calcularSiHorasExtras(dataEntity));
     }
     @Test
-    public void calcularSiHorasExtrasTest_NotExists(){
+    void calcularSiHorasExtrasTest_NotExists(){
         dataEntity.setHorasExtras(0);
         dataEntity.setHora(Time.valueOf("18:00:00"));
-        assertEquals(planillaService.calcularSiHorasExtras(dataEntity),0);
+        assertEquals(0, planillaService.calcularSiHorasExtras(dataEntity));
     }
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.ParseException;
 
 @SuppressWarnings("com.haulmont.jpb.LombokDataInspection")
 @Entity
@@ -27,7 +26,7 @@ public class DataEntity {
         private Boolean justificado;
         private Integer horasExtras;
 
-        public DataEntity(String fecha, String hora, String rut) throws ParseException {
+        public DataEntity(String fecha, String hora, String rut) {
                 this.fecha = Date.valueOf(convertirFecha(fecha));
                 this.hora = Time.valueOf(convertirHora(hora));
                 this.rut = rut;

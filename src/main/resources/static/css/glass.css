@@ -7,6 +7,7 @@
     border-radius: 15px;
     padding: 32px;
     backdrop-filter: blur(10px);
+    max-width: 1300px;
 }
 
 .glass-p2 {
@@ -18,6 +19,7 @@
     border-radius: 15px;
     padding: 10px;
     backdrop-filter: blur(10px);
+    max-width: 500px;
 }
 
 .glass-button {
@@ -33,6 +35,7 @@
     letter-spacing: 2px;
     cursor: pointer;
     text-transform: uppercase;
+    margin: 15px;
 }
 
 .glass-button:hover {
@@ -51,18 +54,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.glass-panel {
-    max-width: 1300px;
-}
-
-.glass-p2 {
-    max-width: 500px;
-}
-
-.glass-button {
-    margin: 15px;
-}
-
 h1, h1 a {
     min-height: 120px;
     width: 90%;
@@ -71,7 +62,6 @@ h1, h1 a {
     text-align: center;
     margin: 0 auto;
     text-decoration: none;
-    color: #fff;
     padding-top: 30px;
     color: rgba(255,255,255,0.8);
 }
