@@ -8,7 +8,7 @@ class DataTest {
     DataService dataService = new DataService();
     @Test
     void readIntoListTest() {
-        assertNotNull(dataService.readIntoList("src/main/resources/static/uploads/"+"Data.txt"));
+        assertNotNull(dataService.readIntoList("Data.txt"));
     }
     @Test
     void nullReadIntoListTest() {
@@ -16,6 +16,6 @@ class DataTest {
     }
     @Test
     void notFoundReadIntoListTest() {
-        assertNull(dataService.readIntoList("src/main/resources/static/uploads/" + "Data1.txt"));
+        assertNull(dataService.readIntoList("Data1.txt"));
     }
 }

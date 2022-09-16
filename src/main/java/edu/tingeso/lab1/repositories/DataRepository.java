@@ -30,7 +30,7 @@ public interface DataRepository extends JpaRepository<DataEntity, Long> {
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
-    @Query(value =  "UPDATE data d SET d.horas_extras = :horasExtras WHERE d.rut = :rut AND d.fecha = :fecha AND d.horas_extras > '18:00'",
+    @Query(value =  "UPDATE data d SET d.horas_extras = :horasExtras WHERE d.rut = :rut AND d.fecha = :fecha AND d.hora > '18:00'",
             nativeQuery = true)
     void updateHorasExtras(@Param("rut") String rut, @Param("fecha") Date fecha, @Param("horasExtras") Integer horasExtras);
 

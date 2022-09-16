@@ -24,26 +24,28 @@ import java.util.ArrayList;
 public class DataService {
     @Autowired
     DataRepository dataRepository;
-    private static final String UPLOAD_DIR = "src/main/resources/static/uploads/";
 
     public Integer loadDataFromFile(MultipartFile file) {
         if (file.isEmpty()) {
             return -1;
         }
-        if (file.getOriginalFilename() == null) {
+        String f = file.getOriginalFilename();
+        if (f != null) {
+            String fileName = StringUtils.cleanPath(f);
+            try {
+                Path path = Paths.get(fileName);
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                readDataFromFile(fileName);
+
+            } catch (IOException e) {
+                return 0;
+            }
+        }
+        else{
             return -1;
         }
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-        try {
-            Path path = Paths.get(UPLOAD_DIR + fileName);
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            readDataFromFile(UPLOAD_DIR + fileName);
-
-        } catch (IOException e) {
-            return 0;
-        }
         return 1;
+
     }
 
     public void deleteData() {
