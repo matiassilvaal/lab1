@@ -26,10 +26,5 @@ public class EmpleadoController {
         return "index";
     }
 
-    @RequestMapping(value = "/eliminar/{id}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String eliminarEmpleado(@PathVariable long id) {
-        empleadoService.eliminarEmpleado(id);
-        return "redirect:/listar";
-    }
 
 }

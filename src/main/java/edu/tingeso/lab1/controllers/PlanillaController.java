@@ -32,7 +32,9 @@ public class PlanillaController {
         return "justificativo";
     }
 
-    @RequestMapping(value="/loadjustificativo", method = {RequestMethod.GET, RequestMethod.PUT})
+
+    @RequestMapping("/loadjustificativo")
+    @PatchMapping(params = "/loadjustificativo/{fecha}/{rut}", consumes = "application/json")
     public String ingresarJustificativo(@RequestParam String fecha, @RequestParam String rut, RedirectAttributes attributes){
         if(!fecha.isBlank() && !rut.isBlank()){
             Integer res = planillaService.ingresarJustificativo(Date.valueOf(fecha), rut);
@@ -50,7 +52,8 @@ public class PlanillaController {
     @GetMapping("/horasextras")
     public String horasextras(){ return "horasextras"; }
 
-    @RequestMapping(value="/loadhorasextras", method = {RequestMethod.GET, RequestMethod.PUT})
+    @RequestMapping("/loadhorasextras")
+    @PatchMapping(params = "/loadhorasextras/{fecha}/{rut}", consumes = "application/json")
     public String ingresarHorasExtras(@RequestParam String fecha, @RequestParam String rut, RedirectAttributes attributes){
         if(!fecha.isBlank() && !rut.isBlank()){
             Integer res = planillaService.ingresarHorasExtras(Date.valueOf(fecha), rut);
@@ -69,7 +72,7 @@ public class PlanillaController {
     public String calcularPlanilla(){
         return "cplanilla";
     }
-    @RequestMapping(value="/calcularplanilla", method = {RequestMethod.GET, RequestMethod.PUT})
+    @PostMapping(value = "/calcularplanilla")
     public String calculosDePlanilla(RedirectAttributes attributes){
         Integer res = planillaService.calcularPlanilla();
         if(res == 1) {

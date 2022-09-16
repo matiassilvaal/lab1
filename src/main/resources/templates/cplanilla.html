@@ -12,9 +12,11 @@
     <p>Calculo automatico de planillas</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
     <div class="glass-p2">
+        <form method="POST" th:action="@{/calcularplanilla}">
         <div>
-            <a class="glass-button" href="/calcularplanilla" role="button">Calcular planilla</a>
+            <button type="submit" class="glass-button">Calcular plantilla</button>
         </div>
+        </form>
         <div>
             <a class="glass-button" href="/mplanilla" role="button">Mostrar planilla</a>
         </div>

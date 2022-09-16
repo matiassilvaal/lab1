@@ -43,11 +43,10 @@ public class PlanillaService {
         }
     }
     public Integer calcularSiJustificativo(DataEntity info){
-        if(info.getJustificado()) return -1;
+        if(Boolean.TRUE.equals(info.getJustificado())) return -1;
         if(info.getHora().compareTo(Time.valueOf(HORAMAXIMA)) >= 0) return 1;
         else return 0;
     }
-
     public Integer ingresarHorasExtras(Date fecha, String rut){
         DataEntity info = dataService.encontrarSalida(rut,fecha);
         if(info == null) return -2;
@@ -113,7 +112,9 @@ public class PlanillaService {
         double descuento = 0.0;
         for(Date fecha : fechas){
             DataEntity entrada = dataService.encontrarEntrada(empleado.getRut(),fecha);
-            descuento += calcularPorHoraDescuento(entrada, sueldoFijo);
+            if(entrada != null){
+                descuento += calcularPorHoraDescuento(entrada, sueldoFijo);
+            }
         }
         return descuento;
     }
@@ -124,7 +125,7 @@ public class PlanillaService {
             return sueldoFijo * 0.03;
         else if (entrada.getHora().compareTo(Time.valueOf("08:45:00")) > 0 && entrada.getHora().compareTo(Time.valueOf(HORAMAXIMA)) < 0)
             return sueldoFijo * 0.06;
-        else if (entrada.getHora().compareTo(Time.valueOf(HORAMAXIMA)) > 0 && !entrada.getJustificado())
+        else if (entrada.getHora().compareTo(Time.valueOf(HORAMAXIMA)) > 0 && Boolean.FALSE.equals(entrada.getJustificado()))
             return sueldoFijo * 0.15;
         return 0.0;
     }
@@ -184,7 +185,6 @@ public class PlanillaService {
         catch (Exception e){
             return 0;
         }
-
     }
 
 }
