@@ -15,16 +15,16 @@ import java.util.List;
 @Controller
 @RequestMapping
 public class DataController {
-    static final String message = "message";
+    static final String MESSAGE = "message";
     @Autowired
     DataService dataService;
     @PostMapping(value = "/load")
     public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
         switch (dataService.loadDataFromFile(file)) {
-            case -1 -> attributes.addFlashAttribute(message, "Porfavor, selecciona un archivo para cargar.");
-            case 0 -> attributes.addFlashAttribute(message, "No se ha podido cargar lo entregado");
-            case 1 -> attributes.addFlashAttribute(message, "Se ha cargado el archivo!");
-            default -> attributes.addFlashAttribute(message, "Error desconocido");
+            case -1 -> attributes.addFlashAttribute(MESSAGE, "Porfavor, selecciona un archivo para cargar.");
+            case 0 -> attributes.addFlashAttribute(MESSAGE, "No se ha podido cargar lo entregado");
+            case 1 -> attributes.addFlashAttribute(MESSAGE, "Se ha cargado el archivo!");
+            default -> attributes.addFlashAttribute(MESSAGE, "Error desconocido");
         }
         return "redirect:/importar";
     }

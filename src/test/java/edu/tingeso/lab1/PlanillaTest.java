@@ -9,7 +9,7 @@ import java.sql.Time;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PlanillaTest {
+class PlanillaTest {
     PlanillaService planillaService = new PlanillaService();
     DataEntity dataEntity = new DataEntity();
     @Test

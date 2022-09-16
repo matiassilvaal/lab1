@@ -14,7 +14,7 @@ import java.util.List;
 @SuppressWarnings({"deprecation", "SpringJavaAutowiredFieldsWarningInspection"})
 @Service
 public class PlanillaService {
-    static final String horaMaxima = "09:10:00";
+    static final String HORAMAXIMA = "09:10:00";
     @Autowired
     EmpleadoService empleadoService;
     @Autowired
@@ -44,7 +44,7 @@ public class PlanillaService {
     }
     public Integer calcularSiJustificativo(DataEntity info){
         if(info.getJustificado()) return -1;
-        if(info.getHora().compareTo(Time.valueOf(horaMaxima)) >= 0) return 1;
+        if(info.getHora().compareTo(Time.valueOf(HORAMAXIMA)) >= 0) return 1;
         else return 0;
     }
 
@@ -122,9 +122,9 @@ public class PlanillaService {
             return sueldoFijo * 0.01;
         else if (entrada.getHora().compareTo(Time.valueOf("08:25:00")) > 0 && entrada.getHora().compareTo(Time.valueOf("08:45:00")) < 0)
             return sueldoFijo * 0.03;
-        else if (entrada.getHora().compareTo(Time.valueOf("08:45:00")) > 0 && entrada.getHora().compareTo(Time.valueOf(horaMaxima)) < 0)
+        else if (entrada.getHora().compareTo(Time.valueOf("08:45:00")) > 0 && entrada.getHora().compareTo(Time.valueOf(HORAMAXIMA)) < 0)
             return sueldoFijo * 0.06;
-        else if (entrada.getHora().compareTo(Time.valueOf(horaMaxima)) > 0 && !entrada.getJustificado())
+        else if (entrada.getHora().compareTo(Time.valueOf(HORAMAXIMA)) > 0 && !entrada.getJustificado())
             return sueldoFijo * 0.15;
         return 0.0;
     }
