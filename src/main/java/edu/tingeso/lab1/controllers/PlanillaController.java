@@ -37,11 +37,10 @@ public class PlanillaController {
         if(!fecha.isBlank() && !rut.isBlank()){
             Integer res = planillaService.ingresarJustificativo(Date.valueOf(fecha), rut);
             switch (res) {
-                case 1 -> attributes.addFlashAttribute(MESSAGE, "Se ha cargado el justificativo");
-                case 0 ->
-                        attributes.addFlashAttribute(MESSAGE, "No se puede justificar un atraso menor de 70 minutos");
-                case -1 -> attributes.addFlashAttribute(MESSAGE, "Este justificativo ya fue ingresado");
                 case -2 -> attributes.addFlashAttribute(MESSAGE, "No se ha encontrado al empleado en la fecha ingresada");
+                case -1 -> attributes.addFlashAttribute(MESSAGE, "Este justificativo ya fue ingresado");
+                case 0 -> attributes.addFlashAttribute(MESSAGE, "No se puede justificar un atraso menor de 70 minutos");
+                case 1 -> attributes.addFlashAttribute(MESSAGE, "Se ha cargado el justificativo");
                 default -> attributes.addFlashAttribute(MESSAGE, "Error desconocido");
             }
         }
@@ -57,8 +56,7 @@ public class PlanillaController {
             Integer res = planillaService.ingresarHorasExtras(Date.valueOf(fecha), rut);
             switch (res) {
                 case 1 -> attributes.addFlashAttribute(MESSAGE, "Se han aceptado las horas extras");
-                case 0 ->
-                        attributes.addFlashAttribute(MESSAGE, "No se puede aceptar menos de 1 hora extra");
+                case 0 -> attributes.addFlashAttribute(MESSAGE, "No se puede aceptar menos de 1 hora extra");
                 case -1 -> attributes.addFlashAttribute(MESSAGE, "Estas horas extras ya fueron aceptadas");
                 case -2 -> attributes.addFlashAttribute(MESSAGE, "El rut o la fecha no existen");
                 default -> attributes.addFlashAttribute(MESSAGE, "Error desconocido");
