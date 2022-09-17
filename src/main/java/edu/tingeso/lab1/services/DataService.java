@@ -25,11 +25,11 @@ public class DataService {
     public Integer readDataFromFile(){
         deleteData();
         List<DataEntity> res = readIntoList("Data.txt");
-        if(res != null) {
+        if(Boolean.FALSE.equals(res.isEmpty())) {
             dataRepository.saveAll(res);
             return 1;
         }
-        else return -1;
+        return 0;
 
     }
     public List<DataEntity> readIntoList(String file){
@@ -48,6 +48,7 @@ public class DataService {
         } catch (FileNotFoundException e) {
             return List.of();
         }
+
     }
 
     public DataEntity encontrarEntrada(String rut, Date fecha){
