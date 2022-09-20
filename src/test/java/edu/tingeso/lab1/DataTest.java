@@ -2,7 +2,7 @@ package edu.tingeso.lab1;
 import static org.mockito.Mockito.verify;
 
 import edu.tingeso.lab1.repositories.DataRepository;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -11,7 +11,6 @@ import edu.tingeso.lab1.entities.DataEntity;
 import edu.tingeso.lab1.services.DataService;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Collections;
@@ -25,6 +24,10 @@ class DataTest {
     @Test
     void readIntoListTest() {
         assertNotNull(dataService.readIntoList("Data.txt"));
+    }
+    @Test
+    void readIntoListTestEmpty() {
+        assertNotNull(dataService.readIntoList("Data2.txt"));
     }
     @Test
     void nullReadIntoListTest() {
@@ -52,4 +55,46 @@ class DataTest {
         verify(dataRepository).findEntrada( Date.valueOf("2020-01-01"),"12345678-9");
     }
 
+    @Test
+    void encontrarSalidaTest(){
+        dataService.encontrarSalida("12345678-9", Date.valueOf("2020-01-01"));
+        verify(dataRepository).findSalida( Date.valueOf("2020-01-01"),"12345678-9");
+    }
+
+    @Test
+    void ingresarJustificativoTest(){
+        dataService.ingresarJustificativo("12345678-9", Date.valueOf("2020-01-01"));
+        verify(dataRepository).updateJustificativo("12345678-9",Date.valueOf("2020-01-01"));
+    }
+
+    @Test
+    void ingresarHorasExtrasTest(){
+        dataService.ingresarHorasExtras("12345678-9", Date.valueOf("2020-01-01"), 1);
+        verify(dataRepository).updateHorasExtras("12345678-9",Date.valueOf("2020-01-01"), 1);
+    }
+
+    @Test
+    void obtenerSumaHorasExtrasTest(){
+        dataService.obtenerSumaHorasExtras("12345678-9");
+        verify(dataRepository).sumHorasExtras("12345678-9");
+    }
+
+    @Test
+    void obtenerFechasUnicasTest(){
+        dataService.obtenerFechasUnicas();
+        verify(dataRepository).findDistinctFecha();
+    }
+
+    @Test
+    void obtenerDataPorFechaTest(){
+        dataService.obtenerData();
+        verify(dataRepository).findAll();
+    }
+
+    @Test
+    void guardarDataTest(){
+        List<DataEntity> data = dataService.readIntoList("Data.txt");
+        dataService.guardarData(data);
+        verify(dataRepository).saveAll(data);
+    }
 }

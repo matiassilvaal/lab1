@@ -30,7 +30,7 @@ public class DataService {
         deleteData();
         List<DataEntity> res = readIntoList("Data.txt");
         if(Boolean.FALSE.equals(res.isEmpty())) {
-            dataRepository.saveAll(res);
+            guardarData(res);
             return 1;
         }
         return 0;
@@ -75,6 +75,9 @@ public class DataService {
     }
     public List<DataEntity> obtenerData() {
         return dataRepository.findAll();
+    }
+    public void guardarData(List<DataEntity> res){
+        dataRepository.saveAll(res);
     }
 
 }
