@@ -19,7 +19,7 @@
             **/controllers/*.java,
             **/entities/*.java,
             **/repositories/*.java
-
+            **/Lab1Application.java
         </sonar.coverage.exclusions>
     </properties>
     <dependencies>
