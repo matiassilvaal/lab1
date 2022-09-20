@@ -3,6 +3,8 @@ package edu.tingeso.lab1.services;
 import edu.tingeso.lab1.entities.DataEntity;
 import edu.tingeso.lab1.entities.EmpleadoEntity;
 import edu.tingeso.lab1.entities.PlanillaEntity;
+import edu.tingeso.lab1.repositories.DataRepository;
+import edu.tingeso.lab1.repositories.EmpleadoRepository;
 import edu.tingeso.lab1.repositories.PlanillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,17 @@ public class PlanillaService {
     DataService dataService;
     @Autowired
     PlanillaRepository planillaRepository;
+    @Autowired
+    DataRepository dataRepository;
+    @Autowired
+    EmpleadoRepository empleadoRepository;
 
+
+    public PlanillaService(PlanillaRepository planillaRepository, DataService dataService, EmpleadoService empleadoService) {
+        this.planillaRepository = planillaRepository;
+        this.dataService = dataService;
+        this.empleadoService = empleadoService;
+    }
     public Integer ingresarJustificativo(Date fecha, String rut){
 
         DataEntity info = dataService.encontrarEntrada(rut,fecha);
