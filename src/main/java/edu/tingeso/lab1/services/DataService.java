@@ -26,11 +26,8 @@ public class DataService {
     public Integer readDataFromFile(){
         deleteData();
         List<DataEntity> res = readIntoList("Data.txt");
-        if(Boolean.FALSE.equals(res.isEmpty())) {
-            guardarData(res);
-            return 1;
-        }
-        return 0;
+        guardarData(res);
+        return 1;
 
     }
     public List<DataEntity> readIntoList(String file){

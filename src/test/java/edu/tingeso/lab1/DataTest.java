@@ -109,4 +109,5 @@ class DataTest {
         dataService.readDataFromFile();
         verify(dataRepository).saveAll(dataService.readIntoList("Data.txt"));
     }
+
 }
