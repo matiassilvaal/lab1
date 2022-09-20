@@ -12,19 +12,15 @@
     <p>Importar archivo data.</p>
     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
     <form method="post" th:action="@{/load}" enctype="multipart/form-data">
-        <div class="glass-p2" style="float: left">
+        <div class="container-left">
         <button type="submit" class="glass-button">Importar data</button>
         </div>
-        <div class="glass-p2" style="float:right;
-        text-align: right;">
-        <a class="glass-button" href="/index" role="button">Volver</a>
-        </div>
+
 
     </form>
     <div class="glass-toolbar">
-        <p id="tabla">Importar data</p>
+        <h2 id="tabla">Data de la empresa</h2>
     <table class="table" aria-describedby="tabla">
-
             <thead style="color: rgba(255,255,255,0.6)">
             <tr >
                 <th>Fecha</th>
@@ -40,6 +36,9 @@
             </tr>
             </tbody>
     </table>
+    </div>
+    <div class="container-right">
+        <a class="glass-button" href="/index" role="button">Volver</a>
     </div>
 </div>
 </body>

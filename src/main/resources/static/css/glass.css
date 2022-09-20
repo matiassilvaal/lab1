@@ -72,3 +72,15 @@ p {
     padding-bottom: 32px;
     color: rgba(255,255,255,0.6);
 }
+
+.container-left{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.container-right{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
