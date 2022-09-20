@@ -19,7 +19,6 @@ public class DataService {
     DataRepository dataRepository;
     public DataService(DataRepository dataRepository)
     {
-        // this keyword refers to current instance
         this.dataRepository = dataRepository;
     }
 

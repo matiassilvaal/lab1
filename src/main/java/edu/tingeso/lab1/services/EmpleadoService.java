@@ -13,14 +13,12 @@ public class EmpleadoService {
     @Autowired
     EmpleadoRepository empleadoRepository;
 
+    public EmpleadoService(EmpleadoRepository empleadoRepository) {
+        this.empleadoRepository = empleadoRepository;
+    }
     public List<EmpleadoEntity> obtenerEmpleados(){
         return empleadoRepository.findAll();
     }
-
-    public void eliminarEmpleado(Long id) {
-        empleadoRepository.deleteById(id);
-    }
-
 
 
 }

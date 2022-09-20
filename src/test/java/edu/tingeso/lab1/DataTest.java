@@ -12,7 +12,7 @@ import edu.tingeso.lab1.services.DataService;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
-import java.sql.Time;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class DataTest {
     @Mock private DataRepository dataRepository;
-    DataService dataService = new DataService(dataRepository);
+    DataService dataService;
     @Test
     void readIntoListTest() {
         assertNotNull(dataService.readIntoList("Data.txt"));
@@ -41,12 +41,6 @@ class DataTest {
     }
 
     @BeforeEach void setUp() {
-        DataEntity data = new DataEntity();
-        data.setRut("12345678-9");
-        data.setHora(Time.valueOf("09:00:00"));
-        data.setHorasExtras(0);
-        data.setFecha(Date.valueOf("2020-01-01"));
-        data.setJustificado(false);
         this.dataService = new DataService(dataRepository);
     }
     @Test

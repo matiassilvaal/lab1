@@ -22,10 +22,6 @@ public class PlanillaService {
     @Autowired
     PlanillaRepository planillaRepository;
 
-    public List<PlanillaEntity> obtenerPlanilla(){
-        return planillaRepository.findAll();
-    }
-
     public Integer ingresarJustificativo(Date fecha, String rut){
 
         DataEntity info = dataService.encontrarEntrada(rut,fecha);
@@ -150,12 +146,7 @@ public class PlanillaService {
         Double cotizacionSalud = calcularCotizacionSalud(empleado);
         return sueldoBruto-descuentos-cotizacionPrevisional-cotizacionSalud;
     }
-    public void guardarPlanilla(PlanillaEntity planilla){
-        planillaRepository.save(planilla);
-    }
-    public void borrarPlanilla(){
-        planillaRepository.deleteAll();
-    }
+
     public Integer calcularPlanilla(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         return calcularPlanilla(empleados);
@@ -187,4 +178,13 @@ public class PlanillaService {
         }
     }
 
+    public List<PlanillaEntity> obtenerPlanilla(){
+        return planillaRepository.findAll();
+    }
+    public void guardarPlanilla(PlanillaEntity planilla){
+        planillaRepository.save(planilla);
+    }
+    public void borrarPlanilla(){
+        planillaRepository.deleteAll();
+    }
 }
