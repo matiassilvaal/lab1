@@ -97,4 +97,16 @@ class DataTest {
         dataService.guardarData(data);
         verify(dataRepository).saveAll(data);
     }
+
+    @Test
+    void deleteDataTest(){
+        dataService.deleteData();
+        verify(dataRepository).deleteAll();
+    }
+
+    @Test
+    void readDataFromFileTest(){
+        dataService.readDataFromFile();
+        verify(dataRepository).saveAll(dataService.readIntoList("Data.txt"));
+    }
 }

@@ -23,9 +23,6 @@ public class DataService {
         this.dataRepository = dataRepository;
     }
 
-    public void deleteData() {
-        dataRepository.deleteAll();
-    }
     public Integer readDataFromFile(){
         deleteData();
         List<DataEntity> res = readIntoList("Data.txt");
@@ -79,5 +76,9 @@ public class DataService {
     public void guardarData(List<DataEntity> res){
         dataRepository.saveAll(res);
     }
+    public void deleteData() {
+        dataRepository.deleteAll();
+    }
+
 
 }
