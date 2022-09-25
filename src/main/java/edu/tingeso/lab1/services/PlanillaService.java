@@ -166,7 +166,6 @@ public class PlanillaService {
     public Integer calcularPlanilla(List<EmpleadoEntity> empleados){
         borrarPlanilla();
         try{
-
             for (EmpleadoEntity empleado : empleados){
                 PlanillaEntity planilla = new PlanillaEntity();
                 planilla.setRut(empleado.getRut());
