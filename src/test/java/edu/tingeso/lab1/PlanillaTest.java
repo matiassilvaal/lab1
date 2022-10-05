@@ -89,12 +89,6 @@ class PlanillaTest {
         assertEquals(-2, planillaService.ingresarJustificativo(Date.valueOf("2021-05-01"), "12345678-9"));
     }
     @Test
-    void ingresarJustificativoTest3(){
-        planillaService.ingresarJustificativo(Date.valueOf("2021-05-01"), "12345678-9");
-        verify(dataRepository).updateJustificativo("12345678-9", Date.valueOf("2021-05-01"));
-
-    }
-    @Test
     void calcularPlanillaTest(){
         planillaService.calcularPlanilla(List.of(empleadoEntity));
         verify(planillaRepository).deleteAll();
