@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://localhost:3306/lab1
     #username: root
-    #password: Leche0123456!
+    #password: leche01234
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
