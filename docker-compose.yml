@@ -10,6 +10,16 @@ services:
       MYSQL_DATABASE: lab1
     ports:
       - 33060:3306
+  nginx:
+    container_name: nginx-proxy
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
   app:
     container_name: mysql-db-data
     image: matiassilvaal/lab1:latest
