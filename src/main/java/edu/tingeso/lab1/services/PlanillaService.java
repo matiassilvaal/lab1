@@ -165,6 +165,7 @@ public class PlanillaService {
     }
     public Integer calcularPlanilla(List<EmpleadoEntity> empleados){
         borrarPlanilla();
+        double resultado;
         try{
             for (EmpleadoEntity empleado : empleados){
                 PlanillaEntity planilla = new PlanillaEntity();
@@ -177,9 +178,10 @@ public class PlanillaService {
                 planilla.setHorasExtras(calcularHorasExtras(empleado));
                 planilla.setDescuentos(calcularDescuentos(empleado,planilla.getSueldoFijo()));
                 planilla.setSueldoBruto(calcularSueldoBruto(empleado));
-                planilla.setCotizacionPrevisional(calcularContizacionPrevisional(empleado));
-                planilla.setCotizacionSalud(calcularCotizacionSalud(empleado));
-                planilla.setSueldoFinal(calcularSueldoFinal(empleado));
+                planilla.setCotizacionPrevisional((resultado = calcularContizacionPrevisional(empleado)) > 0 ? resultado : 0);
+                planilla.setCotizacionSalud((resultado = calcularCotizacionSalud(empleado)) > 0 ? resultado : 0);
+                planilla.setSueldoFinal((resultado = calcularSueldoFinal(empleado)) > 0 ? resultado : 0);
+
                 guardarPlanilla(planilla);
             }
             return 1;
